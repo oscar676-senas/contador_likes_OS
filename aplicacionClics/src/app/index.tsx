@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  Alert,
 } from 'react-native';
 
 interface Registro {
@@ -46,7 +47,21 @@ export default function HomeScreen() {
   };
 
   const reiniciar = () => {
-    registrarCambio(0);
+    Alert.alert(
+      'Reiniciar contador',
+      '¿Estás seguro de que deseas reiniciar los likes?',
+      [
+        {
+          text: 'Cancelar',
+          style: 'cancel',
+        },
+        {
+          text: 'Reiniciar',
+          style: 'destructive',
+          onPress: () => registrarCambio(0),
+        },
+      ],
+    );
   };
 
   const limpiarHistorial = () => {
