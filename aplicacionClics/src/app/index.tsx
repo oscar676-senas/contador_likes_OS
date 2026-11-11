@@ -98,6 +98,10 @@ export default function HomeScreen() {
       </View>
 
       <Text style={styles.tituloHistorial}>Historial de registros</Text>
+       
+      <Text style={styles.subtitulo}>
+         Total de movimientos: {historial.length}
+      </Text>
 
       {historial.length === 0 ? (
         <Text style={styles.vacio}>
