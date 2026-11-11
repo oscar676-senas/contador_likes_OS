@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contador de Likes | Interactividad con el DOM</title>
+
+  <!-- Estilos y script externos (el script usa defer: se ejecuta cuando el HTML ya está listo) -->
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+
+  <main class="tarjeta">
+
+    <header class="encabezado">
+      <h1 class="titulo">Interactividad con el DOM</h1>
+      <p class="subtitulo">
+        Haz clic en el botón para incrementar el contador y registrar la hora
+        exacta del evento en la tabla.
+      </p>
+    </header>
+
+    <section class="panel-contador" aria-label="Contador de likes">
+      <p id="contador" class="contador" aria-live="polite">0</p>
+
+      <div class="acciones">
+        <button id="btn-like" class="btn btn-primario" type="button">Dar Like</button>
+        <button id="btn-restar" class="btn btn-secundario" type="button">Restar Like</button>
+        <button id="btn-reiniciar" class="btn btn-secundario" type="button">Reiniciar</button>
+      </div>
+    </section>
+
+    <section class="registro" aria-label="Registro de clics">
+      <div class="tabla-contenedor">
+        <table class="tabla">
+          <caption class="solo-lectores">Registro de los likes con su hora exacta</caption>
+          <thead>
+            <tr>
+              <th scope="col">Nº Clic</th>
+              <th scope="col">Hora</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-registros">
+            <!-- Las filas se crean dinámicamente con JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
