@@ -1,0 +1,258 @@
+/* ==========================================================================
+   Contador de Likes - Estilos
+   Secciones: 1) Variables  2) Base  3) Tarjeta  4) Contador  5) Botones
+              6) Tabla  7) Accesibilidad  8) Diseño adaptable
+   ========================================================================== */
+
+/* 1) VARIABLES ------------------------------------------------------------ */
+:root {
+  --fondo-pagina: #f1f3f5;
+  --fondo-tarjeta: #ffffff;
+  --texto: #2b2f36;
+  --texto-suave: #5b6470;
+  --borde: #e3e7ec;
+  --fila-alterna: #f8f9fb;
+
+  --azul: #2f8fe0;
+  --azul-alto: #e8590c;          /* color del contador al superar 10 likes */
+  --azul-alto-fondo: #fff0e6;    /* fondo del contador al superar 10 likes */
+
+  --verde: #2ecc71;
+  --verde-hover: #27ae60;
+  --gris-boton: #eef1f4;
+  --gris-boton-hover: #e0e5ea;
+
+  --radio: 16px;
+  --sombra: 0 10px 30px rgba(20, 30, 50, 0.10);
+}
+
+/* 2) BASE ----------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 24px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: var(--fondo-pagina);
+  color: var(--texto);
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+}
+
+/* 3) TARJETA PRINCIPAL ---------------------------------------------------- */
+.tarjeta {
+  width: 100%;
+  max-width: 480px;
+  margin-top: 4vh;
+  padding: 32px 28px;
+  background: var(--fondo-tarjeta);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+
+.encabezado {
+  text-align: center;
+}
+
+.titulo {
+  margin: 0 0 8px;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.subtitulo {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--texto-suave);
+}
+
+/* 4) CONTADOR ------------------------------------------------------------- */
+.panel-contador {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.contador {
+  display: inline-block;
+  min-width: 2ch;
+  margin: 0 0 12px;
+  padding: 0 18px;
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--azul);
+  background: transparent;
+  border-radius: 14px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Clase que JavaScript agrega/quita con classList cuando likes > 10 */
+.contador.contador-alto {
+  color: var(--azul-alto);
+  background: var(--azul-alto-fondo);
+}
+
+/* 5) BOTONES -------------------------------------------------------------- */
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn {
+  padding: 11px 22px;
+  border: none;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.btn-primario {
+  color: #ffffff;
+  background: var(--verde);
+  box-shadow: 0 4px 10px rgba(46, 204, 113, 0.35);
+}
+
+.btn-primario:hover {
+  background: var(--verde-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(39, 174, 96, 0.40);
+}
+
+.btn-secundario {
+  color: var(--texto);
+  background: var(--gris-boton);
+  box-shadow: inset 0 0 0 1px var(--borde);
+}
+
+.btn-secundario:hover {
+  background: var(--gris-boton-hover);
+}
+
+/* 6) TABLA DE REGISTROS --------------------------------------------------- */
+.registro {
+  margin-top: 24px;
+}
+
+.tabla-contenedor {
+  overflow-x: auto;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.tabla th,
+.tabla td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--borde);
+}
+
+.tabla thead th {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--texto-suave);
+  background: var(--fila-alterna);
+}
+
+.tabla tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tabla tbody tr:nth-child(even) {
+  background: var(--fila-alterna);
+}
+
+.tabla tbody tr {
+  animation: aparecer 0.25s ease;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 7) ACCESIBILIDAD -------------------------------------------------------- */
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--azul);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .contador,
+  .tabla tbody tr {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* 8) DISEÑO ADAPTABLE ----------------------------------------------------- */
+/* Tablets */
+@media (max-width: 768px) {
+  .tarjeta {
+    max-width: 440px;
+    margin-top: 2vh;
+  }
+}
+
+/* Teléfonos móviles */
+@media (max-width: 480px) {
+  body {
+    padding: 12px;
+  }
+
+  .tarjeta {
+    padding: 24px 16px;
+  }
+
+  .titulo {
+    font-size: 1.35rem;
+  }
+
+  .contador {
+    font-size: 3.2rem;
+  }
+
+  .acciones {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
