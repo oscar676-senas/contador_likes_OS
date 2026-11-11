@@ -49,6 +49,10 @@ export default function HomeScreen() {
     registrarCambio(0);
   };
 
+  const limpiarHistorial = () => {
+    setHistorial([]);
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.titulo}>Contador de Likes</Text>
@@ -94,6 +98,13 @@ export default function HomeScreen() {
           onPress={reiniciar}
         >
           <Text style={styles.textoBoton}>Reiniciar</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.botonLimpiarHistorial}
+          onPress={limpiarHistorial}
+        >
+          <Text style={styles.textoBoton}>Limpiar historial</Text>
         </TouchableOpacity>
       </View>
 
@@ -187,6 +198,13 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 15,
     borderRadius: 10,
+  },
+  botonLimpiarHistorial: {
+    backgroundColor: '#f59e0b',
+    width: '100%',
+    padding: 15,
+    borderRadius: 10,
+    marginTop: 12,
   },
   textoBoton: {
     color: '#ffffff',
